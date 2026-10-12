@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Connect — CMRCET College Information & AI Chatbot</title>
+  <meta name="description" content="Official college information platform and intelligent AI assistant for CMR College of Engineering & Technology (CMRCET). Find locations, facilities, rules, procedures, and announcements instantly.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Leaflet Interactive Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <!-- Core Theme Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. NAVIGATION BAR
+       ========================================================================= -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="brand-logo" id="brand-logo">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <span>Campus Connect<span class="brand-badge">CMRCET</span></span>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#locations" class="nav-link">Locations</a>
+        <a href="#navigation" class="nav-link">Route Map</a>
+        <a href="#facilities" class="nav-link">Facilities</a>
+        <a href="#rules" class="nav-link">Rules</a>
+        <a href="#procedures" class="nav-link">Procedures</a>
+        <a href="#announcements" class="nav-link">Announcements</a>
+        <a href="#departments" class="nav-link">Departments</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <button class="search-trigger" id="search-trigger-btn" aria-label="Open Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Search</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+
+        <button class="btn btn-secondary btn-sm" id="nav-admin-btn" title="Open Administrator Portal">
+          <i class="fa-solid fa-user-shield"></i>
+          <span>Admin</span>
+        </button>
+
+        <button class="btn btn-primary btn-sm" id="nav-ask-ai-btn">
+          <i class="fa-solid fa-sparkles"></i>
+          <span>Ask AI</span>
+        </button>
+
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. HERO SECTION
+       ========================================================================= -->
+  <section class="hero-section" id="hero">
+    <div class="hero-glow-bg"></div>
+    <div class="container hero-grid">
+      
+      <!-- Hero Left Content -->
+      <div class="hero-content">
+        <div class="section-tag">
+          <span class="dot"></span>
+          <span>CMRCET — UGC Autonomous & NAAC A+ Accredited</span>
+        </div>
+        <h1 class="hero-title">
+          Campus Information.<br>
+          <span class="highlight-accent">One Smart AI Assistant.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Quickly get accurate information about CMR College of Engineering & Technology (CMRCET) — facilities, campus locations, rules, procedures, circulars, and instant AI guidance.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-primary" id="hero-ask-ai-btn">
+            <i class="fa-solid fa-sparkles"></i>
+            <span>Ask Campus Connect AI</span>
+          </button>
+          <a href="#locations" class="btn btn-secondary" id="hero-explore-btn">
+            <span>Explore Campus</span>
+            <i class="fa-solid fa-arrow-down"></i>
+          </a>
+          <a href="#announcements" class="btn btn-outline" id="hero-ann-btn">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>Latest Updates</span>
+          </a>
+        </div>
+
+        <div class="hero-trust-bar">
+          <div class="trust-badges">
+            <span class="trust-pill"><i class="fa-solid fa-building-columns"></i> UGC Autonomous</span>
+            <span class="trust-pill"><i class="fa-solid fa-award"></i> NAAC 'A+' Grade</span>
+            <span class="trust-pill"><i class="fa-solid fa-certificate"></i> NBA Accredited</span>
+            <span class="trust-pill"><i class="fa-solid fa-university"></i> JNTUH Affiliated</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Right Visual / AI Preview -->
+      <div class="hero-visual-wrapper">
+        <div class="hero-preview-card">
+          <div class="hero-card-header">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div class="chat-avatar" style="width: 32px; height: 32px; font-size: 0.85rem;">
+                <i class="fa-solid fa-robot"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 0.95rem; margin-bottom: 2px;">Campus Connect AI</h4>
+                <p style="font-size: 0.75rem; color: var(--text-muted);">CMRCET Knowledge Assistant</p>
+              </div>
+            </div>
+            <div class="pulse-badge">
+              <span class="pulse-dot"></span>
+              <span>Verified Database</span>
+            </div>
+          </div>
+
+          <div class="hero-chat-preview">
+            <div class="preview-bubble preview-user">
+              "Where is the examination cell and how do I get my hall ticket?"
+            </div>
+            <div class="preview-bubble preview-bot">
+              <strong>CMRCET Examination Branch:</strong><br>
+              Located on 1st Floor, Block 1 (Room AD-108). Hall tickets can be downloaded via the student portal with 75% attendance!
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       3. QUICK STATS BAR
+       ========================================================================= -->
+  <section class="section-darker" style="padding: 30px 0;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center;">
+        <div>
+          <div style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--accent-secondary);">50+</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Campus Facilities</div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--accent-secondary);">10+</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Engineering Departments</div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--accent-secondary);">100+</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Verified Procedures</div>
+        </div>
+        <div>
+          <div style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--color-success);">24/7</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">AI Instant Assistance</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       4. QUICK QUESTIONS SECTION
+       ========================================================================= -->
+  <section class="section" id="quick-questions">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">
+          <i class="fa-solid fa-bolt"></i>
+          <span>Instant Answers & Navigation</span>
+        </div>
+        <h2 class="section-title">Common Student Questions</h2>
+        <p class="section-desc">Click any frequent question below to instantly receive verified information and quick navigation from the CMRCET database.</p>
+      </div>
+
+      <div class="quick-questions-grid">
+        <div class="question-chip-btn" data-question="Where is the library?">
+          <div class="question-chip-left">
+            <div class="question-chip-icon"><i class="fa-solid fa-book-open"></i></div>
+            <span class="question-chip-text">Where is the library?</span>
+          </div>
+          <i class="fa-solid fa-arrow-right question-chip-arrow"></i>
+        </div>
+
+        <div class="question-chip-btn" data-question="Where is the canteen?">
+          <div class="question-chip-left">
+            <div class="question-chip-icon"><i class="fa-solid fa-utensils"></i></div>
+            <span class="question-chip-text">Where is the canteen?</span>
+          </div>
+          <i class="fa-solid fa-arrow-right question-chip-arrow"></i>
+        </div>
+
+        <div class="question-chip-btn" data-question="Where is the administrative block?">
+          <div class="question-chip-left">
+            <div class="question-chip-icon"><i class="fa-solid fa-building"></i></div>
+            <span class="question-chip-text">Where is the administrative block?</span>
+          </div>
+          <i class="fa-solid fa-arrow-right question-chip-arrow"></i>
+        </div>
+
+        <div class="question-chip-btn" data-question="Where is the examination cell?">
+          <div class="question-chip-left">
+            <div class="question-chip-icon"><i class="fa-solid fa-file-signature"></i></div>
+            <span class="question-chip-text">Where is the examination cell?</span>
+          </div>
+          <i class="fa-solid fa-arrow-right question-chip-arrow"></i>
+        </div>
+
+        <div class="question-chip-btn" data-question="Where is the main gate?">
+          <div class="question-chip-left">
+            <div class="question-chip-icon"><i class="fa-solid fa-door-open"></i></div>
+            <span class="question-chip-text">Where is the main gate?</span>
+          </div>
+          <i class="fa-solid fa-arrow-right question-chip-arrow"></i>
+        </div>
+
+        <div class="question-chip-btn" data-question="Where is the parking area?">
+          <div class="question-chip-left">
+            <div class="question-chip-icon"><i class="fa-solid fa-square-parking"></i></div>
+            <span class="question-chip-text">Where is the parking area?</span>
+          </div>
+          <i class="fa-solid fa-arrow-right question-chip-arrow"></i>
+        </div>
+
+        <div class="question-chip-btn" data-question="What are the library timings?">
+          <div class="question-chip-left">
+            <div class="question-chip-icon"><i class="fa-solid fa-clock"></i></div>
+            <span class="question-chip-text">What are the library timings?</span>
+          </div>
+          <i class="fa-solid fa-arrow-right question-chip-arrow"></i>
+        </div>
+
+        <div class="question-chip-btn" data-question="What are the library rules?">
+          <div class="question-chip-left">
+            <div class="question-chip-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+            <span class="question-chip-text">What are the library rules?</span>
+          </div>
+          <i class="fa-solid fa-arrow-right question-chip-arrow"></i>
+        </div>
+
+        <div class="question-chip-btn" data-question="What are the college working hours?">
+          <div class="question-chip-left">
+            <div class="question-chip-icon"><i class="fa-solid fa-business-time"></i></div>
+            <span class="question-chip-text">What are the college working hours?</span>
+          </div>
+          <i class="fa-solid fa-arrow-right question-chip-arrow"></i>
+        </div>
+
+        <div class="question-chip-btn" data-question="Show today's announcements">
+          <div class="question-chip-left">
+            <div class="question-chip-icon"><i class="fa-solid fa-bullhorn"></i></div>
+            <span class="question-chip-text">Show today's announcements</span>
+          </div>
+          <i class="fa-solid fa-arrow-right question-chip-arrow"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. CAMPUS LOCATION DIRECTORY
+       ========================================================================= -->
+  <section class="section section-darker" id="locations">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Campus Directory</span>
+        </div>
+        <h2 class="section-title">CMRCET Campus Locations</h2>
+        <p class="section-desc">Explore academic blocks, laboratories, examination branches, and facilities. Real uploaded photos are displayed, or an elegant 'Picture Coming Soon' placeholder.</p>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="locations-filter-bar">
+        <div class="filter-chips">
+          <button class="filter-chip active" data-category="All">All Locations</button>
+          <button class="filter-chip" data-category="Academic">Academic</button>
+          <button class="filter-chip" data-category="Administrative">Administrative</button>
+          <button class="filter-chip" data-category="Facilities">Facilities</button>
+          <button class="filter-chip" data-category="Sports">Sports</button>
+          <button class="filter-chip" data-category="Residential">Hostels</button>
+          <button class="filter-chip" data-category="Food & Dining">Dining</button>
+        </div>
+      </div>
+
+      <!-- Locations Grid Container -->
+      <div class="locations-grid" id="locations-container">
+        <!-- Rendered dynamically by script.js with strict Picture Coming Soon placeholder -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6. ADVANCED CAMPUS SEARCH & INTERACTIVE NAVIGATION
+       ========================================================================= -->
+  <section class="section" id="navigation">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <i class="fa-solid fa-location-crosshairs"></i>
+          <span>Advanced Live Navigation</span>
+        </div>
+        <h2 class="section-title">Campus Location Search & Navigation</h2>
+        <p class="section-desc">Search any CMRCET facility to view instant location details, route maps, turn-by-turn directions, and live GPS movement tracking.</p>
+      </div>
+
+      <!-- Dedicated Campus Location Search Bar -->
+      <div class="location-search-box-wrap">
+        <form class="location-search-form" id="campus-location-search-form">
+          <i class="fa-solid fa-magnifying-glass highlight-accent" style="font-size: 1.15rem;"></i>
+          <input 
+            type="text" 
+            id="campus-loc-search-input" 
+            class="location-search-input" 
+            placeholder="Search CMRCET location (e.g. 'canteen', 'Where is the library?', 'administrative block', 'exam cell')..."
+            autocomplete="off"
+          >
+          <button type="submit" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Search</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Location Search Result Card Container -->
+      <div id="campus-search-result-container"></div>
+
+      <!-- Map & Route Planner Layout -->
+      <div class="map-route-layout">
+        
+        <!-- Interactive Leaflet Map Box with Live Nav HUD Overlay -->
+        <div class="map-container-box">
+          <div class="map-header-bar">
+            <div class="map-header-left">
+              <i class="fa-solid fa-satellite highlight-accent"></i>
+              <strong style="font-size: 0.95rem; color: var(--text-primary);" id="map-status-title">CMRCET Satellite Campus Map</strong>
+            </div>
+            <div class="map-header-right">
+              <!-- Map Layers: SATELLITE (Default) | HYBRID | MAP -->
+              <div class="map-layer-toggles" id="map-layer-toggles" role="group" aria-label="Map Layer Selection">
+                <button type="button" class="map-layer-btn active" data-layer="satellite" id="layer-btn-satellite" title="Satellite Imagery">
+                  <i class="fa-solid fa-satellite"></i> <span>Satellite</span>
+                </button>
+                <button type="button" class="map-layer-btn" data-layer="hybrid" id="layer-btn-hybrid" title="Satellite with Campus Roads & Labels">
+                  <i class="fa-solid fa-layer-group"></i> <span>Hybrid</span>
+                </button>
+                <button type="button" class="map-layer-btn" data-layer="map" id="layer-btn-map" title="Street Map View">
+                  <i class="fa-solid fa-map"></i> <span>Map</span>
+                </button>
+              </div>
+
+              <button class="btn btn-secondary btn-sm" id="btn-gps-locate-me" title="Locate Current Position">
+                <i class="fa-solid fa-crosshairs"></i> <span>Locate Me</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Fallback Alert Banner (Section 34) -->
+          <div id="map-fallback-banner" class="map-fallback-banner" style="display: none;">
+            <div class="map-fallback-content">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span id="map-fallback-msg">Satellite map is temporarily unavailable. Loaded fallback map.</span>
+            </div>
+            <button type="button" class="map-fallback-close" id="map-fallback-close-btn" aria-label="Dismiss">&times;</button>
+          </div>
+
+          <!-- Live Navigation Top Instruction HUD (Hidden until navigation starts) -->
+          <div class="nav-hud-top-bar" id="nav-hud-top-bar" style="display: none;">
+            <div class="nav-hud-instruction-wrap">
+              <div class="nav-hud-turn-icon" id="nav-hud-turn-icon">
+                <i class="fa-solid fa-arrow-up"></i>
+              </div>
+              <div>
+                <div class="nav-hud-current-step" id="nav-hud-current-step">Walk straight on main campus avenue</div>
+                <div class="nav-hud-next-step" id="nav-hud-next-step">Next: Turn right towards library</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Off-Route Warning Alert Banner -->
+          <div class="nav-offroute-banner" id="nav-offroute-banner" style="display: none;">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>You are off route. Recalculating...</span>
+          </div>
+
+          <!-- Live Navigation Bottom Controls HUD (Hidden until navigation starts) -->
+          <div class="nav-hud-bottom-bar" id="nav-hud-bottom-bar" style="display: none;">
+            <div class="nav-hud-metrics">
+              <div class="nav-metric-unit">
+                <span class="nav-metric-num" id="nav-live-dist">-- m</span>
+                <span class="nav-metric-label">Remaining</span>
+              </div>
+              <div style="width: 1px; height: 28px; background: var(--border-subtle);"></div>
+              <div class="nav-metric-unit">
+                <span class="nav-metric-num" id="nav-live-eta">-- min</span>
+                <span class="nav-metric-label">ETA</span>
+              </div>
+            </div>
+            <div class="nav-hud-actions">
+              <button class="btn btn-secondary btn-sm" id="nav-btn-recenter" title="Recenter on current location">
+                <i class="fa-solid fa-crosshairs"></i> Recenter
+              </button>
+              <button class="btn btn-secondary btn-sm" id="nav-btn-pause-resume" title="Pause / Resume navigation">
+                <i class="fa-solid fa-pause"></i> Pause
+              </button>
+              <button class="btn btn-danger btn-sm" id="nav-btn-end" title="End navigation">
+                <i class="fa-solid fa-stop"></i> End
+              </button>
+            </div>
+          </div>
+
+          <!-- Campus Aerial Map & Reference Building Directory Wrapper -->
+          <div class="campus-interactive-stage" id="campus-interactive-stage">
+            <!-- Leaflet Map Container -->
+            <div id="campus-map-view"></div>
+
+            <!-- Right-Side Campus Building Directory Panel (Reference Layout) -->
+            <aside class="campus-reference-directory" id="campus-reference-directory">
+              <div class="ref-directory-header">
+                <div class="ref-header-brand">
+                  <div class="ref-header-emblem">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                  </div>
+                  <div class="ref-header-info">
+                    <h3 class="ref-header-title">CMRCET Campus Directory</h3>
+                    <span class="ref-header-subtitle">UGC Autonomous &bull; Kandlakoya</span>
+                  </div>
+                </div>
+                <div class="ref-header-actions">
+                  <button type="button" class="ref-toggle-collapse-btn" id="ref-toggle-collapse-btn" title="Toggle directory width">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Quick Filter Field -->
+              <div class="ref-directory-search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="ref-directory-search-input" placeholder="Filter buildings by name or number..." autocomplete="off">
+              </div>
+
+              <!-- Numbered Building Directory List -->
+              <div class="ref-directory-scrollable-list" id="ref-directory-list">
+                <!-- Dynamically generated with numbered items 1..N matching map markers -->
+              </div>
+
+              <!-- Reference Campus Legend -->
+              <div class="ref-directory-legend">
+                <div class="ref-legend-title">CAMPUS LEGEND</div>
+                <div class="ref-legend-items">
+                  <div class="ref-legend-item">
+                    <span class="ref-legend-badge parking">P</span>
+                    <span class="ref-legend-label">PARKING PLAZA</span>
+                  </div>
+                  <div class="ref-legend-item">
+                    <span class="ref-legend-arrow main"><i class="fa-solid fa-arrow-down"></i></span>
+                    <span class="ref-legend-label">MAIN ENTRANCE (GATE 1)</span>
+                  </div>
+                  <div class="ref-legend-item">
+                    <span class="ref-legend-arrow secondary"><i class="fa-solid fa-arrow-down"></i></span>
+                    <span class="ref-legend-label">SECONDARY ENTRANCE</span>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <!-- GPS Simulator / Tester Toolbar (Enables testing GPS movement & off-route detection on desktop) -->
+          <div class="gps-sim-toolbar" id="gps-sim-toolbar">
+            <span><i class="fa-solid fa-flask highlight-accent"></i> <strong>GPS Simulation Testing:</strong></span>
+            <div style="display: flex; gap: 6px;">
+              <button type="button" class="btn-sim" id="btn-sim-step" title="Simulate walking step forward along route">
+                <i class="fa-solid fa-forward-step"></i> Step Forward
+              </button>
+              <button type="button" class="btn-sim" id="btn-sim-offroute" title="Simulate moving off route">
+                <i class="fa-solid fa-shuffle"></i> Test Off-Route
+              </button>
+              <button type="button" class="btn-sim" id="btn-sim-arrive" title="Simulate reaching destination">
+                <i class="fa-solid fa-flag-checkered"></i> Test Arrival
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Route Planner Panel -->
+        <div class="route-planner-card">
+          <div class="route-planner-header">
+            <h3><i class="fa-solid fa-route highlight-accent"></i> Campus Route Planner</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Select starting point and destination to compute route.</p>
+          </div>
+
+          <div class="route-selector-fields">
+            <!-- Start Point -->
+            <div class="route-field-group">
+              <span class="route-point-marker origin"><i class="fa-solid fa-circle-dot"></i></span>
+              <div class="field-select-wrap">
+                <label for="route-origin-select">Start Location</label>
+                <select id="route-origin-select" class="route-select">
+                  <option value="current-gps">🟢 Current Location (Live GPS)</option>
+                  <!-- Injected dynamically -->
+                </select>
+              </div>
+            </div>
+
+            <!-- Swap button -->
+            <button class="route-swap-btn" id="route-swap-btn" title="Swap Origin and Destination" aria-label="Swap points">
+              <i class="fa-solid fa-up-down"></i>
+            </button>
+
+            <!-- Destination Point -->
+            <div class="route-field-group">
+              <span class="route-point-marker dest"><i class="fa-solid fa-location-dot"></i></span>
+              <div class="field-select-wrap">
+                <label for="route-dest-select">Destination</label>
+                <select id="route-dest-select" class="route-select">
+                  <!-- Injected dynamically -->
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Route Metrics Bar -->
+          <div class="route-metrics-bar" id="route-metrics-bar">
+            <div class="metric-item">
+              <i class="fa-solid fa-person-walking"></i>
+              <div>
+                <span class="metric-val" id="route-distance-val">280 m</span>
+                <span class="metric-lbl">Est. Distance</span>
+              </div>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-item">
+              <i class="fa-solid fa-stopwatch"></i>
+              <div>
+                <span class="metric-val" id="route-time-val">~3 mins</span>
+                <span class="metric-lbl">Walking Time</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step-by-Step Directions List -->
+          <div class="route-steps-container">
+            <div class="steps-header">
+              <h4 style="font-size: 0.9rem;">Turn-by-Turn Directions</h4>
+              <span class="step-count-badge" id="route-step-count">4 steps</span>
+            </div>
+            <ol class="route-steps-list" id="route-steps-list">
+              <!-- Injected dynamically -->
+            </ol>
+          </div>
+
+          <!-- Route Actions -->
+          <div class="route-actions-footer">
+            <button class="btn btn-secondary btn-sm" id="route-view-btn">
+              <i class="fa-solid fa-eye"></i> View Route
+            </button>
+            <button class="btn btn-primary btn-sm" id="route-start-nav-btn">
+              <i class="fa-solid fa-diamond-turn-right"></i> Start Navigation
+            </button>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" id="route-external-directions-btn" title="Open in Google Maps">
+              <i class="fa-solid fa-map-location-dot"></i> Google Maps
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       6.1 ARRIVAL CELEBRATION MODAL
+       ========================================================================= -->
+  <div class="custom-modal-backdrop" id="nav-arrival-modal" role="dialog" aria-modal="true" style="position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 2500; display: none; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: var(--bg-card); border: 1px solid var(--color-success); border-radius: var(--radius-lg); width: 440px; max-width: 100%; padding: 30px; text-align: center; box-shadow: var(--shadow-lg);">
+      <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(34, 197, 94, 0.15); border: 2px solid var(--color-success); color: var(--color-success); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 16px;">
+        <i class="fa-solid fa-flag-checkered"></i>
+      </div>
+      <h2 style="font-size: 1.5rem; margin-bottom: 8px; color: var(--text-primary);">🎉 You have arrived!</h2>
+      <h3 style="font-size: 1.15rem; color: var(--accent-secondary); margin-bottom: 16px;" id="nav-arrival-dest-name">CMRCET Destination</h3>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 24px;">
+        You have successfully reached your destination on the CMRCET campus.
+      </p>
+      <button class="btn btn-primary" id="nav-arrival-close-btn" style="width: 100%;">
+        <i class="fa-solid fa-circle-check"></i> End Navigation
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       6.2 END NAVIGATION CONFIRMATION MODAL
+       ========================================================================= -->
+  <div class="custom-modal-backdrop" id="nav-end-confirm-modal" role="dialog" aria-modal="true" style="position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 2500; display: none; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-md); width: 380px; max-width: 100%; padding: 24px; text-align: center; box-shadow: var(--shadow-lg);">
+      <h3 style="font-size: 1.15rem; margin-bottom: 10px; color: var(--text-primary);">End navigation?</h3>
+      <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 20px;">
+        Are you sure you want to stop live GPS tracking and route guidance?
+      </p>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn btn-secondary btn-sm" id="nav-confirm-cancel-btn" style="flex: 1;">Cancel</button>
+        <button class="btn btn-danger btn-sm" id="nav-confirm-end-btn" style="flex: 1;">End Navigation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       7. FACILITIES SECTION
+       ========================================================================= -->
+  <section class="section section-darker" id="facilities">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <i class="fa-solid fa-microchip"></i>
+          <span>Campus Infrastructure</span>
+        </div>
+        <h2 class="section-title">College Facilities</h2>
+        <p class="section-desc">State-of-the-art academic, computing, dining, sports, and residential infrastructure built for CMRCET students.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+        <div class="location-card">
+          <div class="location-card-body">
+            <span class="category-badge">Academic & Research</span>
+            <h4 class="location-title" style="margin-top: 10px;">Central Digital Library</h4>
+            <p class="location-desc">85,000+ volumes, DELNET & IEEE digital journals, air-conditioned reading halls, and quiet study cubicles.</p>
+            <div class="location-meta-row">
+              <span class="location-meta-item"><i class="fa-solid fa-clock"></i> 8:30 AM – 7:30 PM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="location-card">
+          <div class="location-card-body">
+            <span class="category-badge">Computing Hub</span>
+            <h4 class="location-title" style="margin-top: 10px;">AI & High-Performance Labs</h4>
+            <p class="location-desc">20+ advanced labs with NVIDIA AI accelerators, CISCO networking gear, and 1 Gbps dedicated internet.</p>
+            <div class="location-meta-row">
+              <span class="location-meta-item"><i class="fa-solid fa-clock"></i> 8:45 AM – 5:30 PM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="location-card">
+          <div class="location-card-body">
+            <span class="category-badge">Residential</span>
+            <h4 class="location-title" style="margin-top: 10px;">Campus Hostels (Boys & Girls)</h4>
+            <p class="location-desc">Safe accommodation with 24/7 CCTV, biometric entry, RO drinking water, Wi-Fi, and dining mess.</p>
+            <div class="location-meta-row">
+              <span class="location-meta-item"><i class="fa-solid fa-shield-halved"></i> Curfew: 7:30 PM (G) / 8:30 PM (B)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="location-card">
+          <div class="location-card-body">
+            <span class="category-badge">Athletics</span>
+            <h4 class="location-title" style="margin-top: 10px;">Sports Complex & Grounds</h4>
+            <p class="location-desc">Floodlit cricket stadium, football ground, 400m track, basketball courts, and indoor badminton arena.</p>
+            <div class="location-meta-row">
+              <span class="location-meta-item"><i class="fa-solid fa-medal"></i> 6:00 AM – 8:30 AM & 4:00 PM – 7:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       8. RULES & REGULATIONS SECTION
+       ========================================================================= -->
+  <section class="section" id="rules">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <span>Campus Policies</span>
+        </div>
+        <h2 class="section-title">College Rules & Regulations</h2>
+        <p class="section-desc">Essential academic norms, attendance requirements, examination regulations, and code of conduct for all students.</p>
+      </div>
+
+      <div class="rules-grid" id="rules-container">
+        <!-- Rendered dynamically from college-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       9. PROCEDURES SECTION
+       ========================================================================= -->
+  <section class="section section-darker" id="procedures">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <i class="fa-solid fa-list-check"></i>
+          <span>Student Desk</span>
+        </div>
+        <h2 class="section-title">Official Student Procedures</h2>
+        <p class="section-desc">Clear step-by-step instructions for certificates, fee payments, hall tickets, transport, and migration.</p>
+      </div>
+
+      <div class="rules-grid" id="procedures-container">
+        <!-- Rendered dynamically from college-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       10. ANNOUNCEMENTS & LATEST UPDATES
+       ========================================================================= -->
+  <section class="section" id="announcements">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <i class="fa-solid fa-bullhorn"></i>
+          <span>Circulars & Notices</span>
+        </div>
+        <h2 class="section-title">Latest College Announcements</h2>
+        <p class="section-desc">Stay informed with real-time exam schedules, tech fest circulars, placement notifications, and official notices.</p>
+      </div>
+
+      <div class="announcements-grid" id="announcements-container">
+        <!-- Rendered dynamically from college-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       11. ACADEMIC DEPARTMENTS
+       ========================================================================= -->
+  <section class="section section-darker" id="departments">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <i class="fa-solid fa-diagram-project"></i>
+          <span>Academic Wings</span>
+        </div>
+        <h2 class="section-title">Academic Departments</h2>
+        <p class="section-desc">Undergraduate and postgraduate engineering and management departments at CMRCET.</p>
+      </div>
+
+      <div class="locations-grid" id="departments-container">
+        <!-- Rendered dynamically from college-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       12. CALL TO ACTION (CTA)
+       ========================================================================= -->
+  <section class="section" id="cta-section">
+    <div class="container">
+      <div style="background: linear-gradient(135deg, #101522 0%, #0d111c 100%); border: 1px solid var(--border-accent); border-radius: var(--radius-xl); padding: 50px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-lg);">
+        <div class="section-tag">
+          <i class="fa-solid fa-sparkles"></i>
+          <span>Always Ready To Help</span>
+        </div>
+        <h2 style="font-size: 2.2rem; margin-bottom: 14px; color: var(--text-primary);">Have a Question About CMRCET?</h2>
+        <p style="font-size: 1.05rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 28px;">
+          Ask Campus Connect AI and get verified answers about locations, timings, rules, procedures, and notices in seconds.
+        </p>
+        <button class="btn btn-primary" id="cta-ask-ai-btn">
+          <i class="fa-solid fa-sparkles"></i>
+          <span>Ask Campus Connect AI</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       13. FOOTER
+       ========================================================================= -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Brand Column -->
+        <div class="footer-col footer-brand">
+          <a href="#hero" class="brand-logo">
+            <div class="brand-icon">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <span>Campus Connect<span class="brand-badge">CMRCET</span></span>
+          </a>
+          <p>Official college information platform and AI assistant for CMR College of Engineering & Technology.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <div class="footer-links">
+            <a href="#hero">Home</a>
+            <a href="#locations">Campus Locations</a>
+            <a href="#navigation">Route Map</a>
+            <a href="#facilities">Facilities</a>
+            <a href="#announcements">Announcements</a>
+          </div>
+        </div>
+
+        <!-- Student Support -->
+        <div class="footer-col">
+          <h4>Student Support</h4>
+          <div class="footer-links">
+            <a href="#rules">Rules & Policies</a>
+            <a href="#procedures">Procedures</a>
+            <a href="#departments">Departments</a>
+            <a href="javascript:void(0)" onclick="openChatbotWindow()">Ask AI Chatbot</a>
+          </div>
+        </div>
+
+        <!-- Contact Column -->
+        <div class="footer-col">
+          <h4>CMRCET Campus</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span id="footer-address">Kandlakoya (V), Medchal Road, Hyderabad, Telangana – 501401</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <span id="footer-phone">+91 92487 27210 / 08418 200037</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span id="footer-email">info@cmrcet.ac.in</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Campus Connect — CMR College of Engineering & Technology (CMRCET). All rights reserved.</p>
+        <p>UGC Autonomous | NAAC A+ Grade</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       14. FLOATING AI CHATBOT WIDGET
+       ========================================================================= -->
+  <div class="chatbot-launcher">
+    <button class="chatbot-toggle-btn" id="chatbot-toggle-btn" aria-label="Toggle Campus Connect AI">
+      <i class="fa-solid fa-comment-dots" id="chat-toggle-icon"></i>
+    </button>
+  </div>
+
+  <!-- Chatbot Window -->
+  <div class="chatbot-window" id="chatbot-window" role="dialog" aria-modal="true" aria-label="Campus Connect AI Assistant">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="chat-title-wrap">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <h3>Campus Connect AI</h3>
+          </div>
+          <div class="chat-status">
+            <span class="status-indicator"></span>
+            <span>CMRCET Knowledge Base</span>
+          </div>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button class="chat-action-btn" id="chat-tts-btn" title="Toggle Voice Output (Speech)" aria-label="Toggle voice output">
+          <i class="fa-solid fa-volume-xmark" id="chat-tts-icon"></i>
+        </button>
+        <button class="chat-action-btn" id="chat-clear-btn" title="Clear conversation" aria-label="Clear chat">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+        <button class="chat-action-btn" id="chat-close-btn" title="Close chat" aria-label="Close chat">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Messages Container -->
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-msg bot">
+        <div class="msg-bubble">
+          Hello! I am <strong>Campus Connect AI</strong> 👋<br><br>
+          Ask me anything about <strong>CMRCET</strong> facilities, locations, timings, rules, procedures, or announcements. You can also tap the mic to speak!
+        </div>
+        <span class="msg-time">Just now</span>
+      </div>
+    </div>
+
+    <!-- Quick Suggestion Chips -->
+    <div class="chat-suggestions" id="chat-suggestions">
+      <button class="suggestion-chip" data-query="Where is the library?">Where is the library?</button>
+      <button class="suggestion-chip" data-query="What are the library timings?">Library timings</button>
+      <button class="suggestion-chip" data-query="What are the library rules?">Library rules</button>
+      <button class="suggestion-chip" data-query="Where is the administrative block?">Admin block</button>
+      <button class="suggestion-chip" data-query="Where is the examination cell?">Examination cell</button>
+      <button class="suggestion-chip" data-query="Where is the canteen?">Canteen</button>
+      <button class="suggestion-chip" data-query="What are the college working hours?">College timings</button>
+      <button class="suggestion-chip" data-query="Show today's announcements">Announcements</button>
+      <button class="suggestion-chip" data-query="How do I apply for a bonafide certificate?">Bonafide procedure</button>
+    </div>
+
+    <!-- Input Form -->
+    <div class="chat-input-area">
+      <form class="chat-form" id="chat-form">
+        <button type="button" class="chat-action-btn" id="chat-mic-btn" title="Voice Input (Speech-to-Text)" aria-label="Voice input">
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+        <input 
+          type="text" 
+          class="chat-input" 
+          id="chat-input" 
+          placeholder="Ask something about CMRCET..." 
+          autocomplete="off"
+          required
+        >
+        <button type="submit" class="chat-send-btn" id="chat-send-btn" aria-label="Send message">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       15. ADMIN PORTAL MODAL
+       ========================================================================= -->
+  <div class="admin-modal-backdrop" id="admin-modal-backdrop" role="dialog" aria-modal="true">
+    <div class="admin-modal-box">
+      
+      <!-- Admin Header -->
+      <div class="admin-modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <i class="fa-solid fa-user-shield highlight-accent" style="font-size: 1.3rem;"></i>
+          <h3 style="font-size: 1.15rem;">CMRCET Administration Portal</h3>
+        </div>
+        <button class="chat-action-btn" id="admin-modal-close" aria-label="Close Admin Modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- 1. Authentication View -->
+      <div id="admin-auth-view" style="padding: 30px;">
+        <div style="max-width: 400px; margin: 0 auto; text-align: center;">
+          <div class="brand-icon" style="margin: 0 auto 16px; width: 48px; height: 48px; font-size: 1.4rem;">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <h3 style="margin-bottom: 8px;">Administrator Login</h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+            Authorized staff can publish announcements and manage location photos.
+          </p>
+
+          <form id="admin-login-form">
+            <div class="form-group" style="text-align: left;">
+              <label class="form-label" for="admin-user">Username</label>
+              <input type="text" id="admin-user" class="form-control" placeholder="admin" required autocomplete="username">
+            </div>
+            <div class="form-group" style="text-align: left;">
+              <label class="form-label" for="admin-pass">Password</label>
+              <input type="password" id="admin-pass" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 12px;">
+              <i class="fa-solid fa-right-to-bracket"></i> Login to Admin
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" id="admin-demo-fill-btn" style="width: 100%;">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> 1-Click Demo Auto-Fill (admin / cmrcet@2026)
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- 2. Admin Dashboard View -->
+      <div id="admin-dashboard-view" style="display: none; flex-direction: column; height: 100%;">
+        
+        <!-- Admin Tabs Bar -->
+        <div class="admin-tabs-nav">
+          <button class="admin-tab-btn active" data-tab="admin-tab-announcements">
+            <i class="fa-solid fa-bullhorn"></i> Announcements
+          </button>
+          <button class="admin-tab-btn" data-tab="admin-tab-locations">
+            <i class="fa-solid fa-camera"></i> Location Photos
+          </button>
+          <button class="admin-tab-btn" data-tab="admin-tab-system">
+            <i class="fa-solid fa-database"></i> Database Sync
+          </button>
+          <button class="btn btn-secondary btn-sm" id="admin-logout-btn" style="margin-left: auto; align-self: center;">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+          </button>
+        </div>
+
+        <div class="admin-modal-body">
+          
+          <!-- Pane 1: Announcements Manager -->
+          <div class="admin-tab-pane active" id="admin-tab-announcements">
+            <h4 style="margin-bottom: 14px;"><i class="fa-solid fa-plus-circle highlight-accent"></i> Post New Announcement</h4>
+            <form id="admin-add-announcement-form" style="background: var(--bg-primary); padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: 24px;">
+              <div class="form-group">
+                <label class="form-label">Announcement Title *</label>
+                <input type="text" id="admin-ann-title" class="form-control" placeholder="e.g. Autonomous Examination Schedule Released" required>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                <div class="form-group">
+                  <label class="form-label">Category *</label>
+                  <select id="admin-ann-category" class="form-control" required>
+                    <option value="Exam">Exam</option>
+                    <option value="Academic">Academic</option>
+                    <option value="Placement">Placement</option>
+                    <option value="Event">Event</option>
+                    <option value="Holiday">Holiday</option>
+                    <option value="Notice">General Notice</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Priority</label>
+                  <select id="admin-ann-priority" class="form-control">
+                    <option value="Urgent">Urgent</option>
+                    <option value="High">High</option>
+                    <option value="Normal" selected>Normal</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Description / Notice Details *</label>
+                <textarea id="admin-ann-desc" class="form-control" rows="3" placeholder="Provide full announcement details..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-paper-plane"></i> Publish Immediately
+              </button>
+            </form>
+
+            <h4 style="margin-bottom: 14px;">Existing Announcements</h4>
+            <div id="admin-announcements-list">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Pane 2: Campus Location Photos Manager -->
+          <div class="admin-tab-pane" id="admin-tab-locations">
+            <div style="background: rgba(99, 102, 241, 0.08); border: 1px solid var(--border-accent); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+              <h5 style="color: var(--accent-secondary); margin-bottom: 6px;"><i class="fa-solid fa-triangle-exclamation"></i> Strict Image Policy</h5>
+              <p style="font-size: 0.825rem; color: var(--text-secondary); line-height: 1.4;">
+                Upload ONLY genuine, verified photographs taken at CMRCET. When no actual photo is uploaded or when you remove a photo, the location immediately displays the <strong>"Picture Coming Soon"</strong> placeholder UI.
+              </p>
+            </div>
+
+            <h4 style="margin-bottom: 14px;"><i class="fa-solid fa-cloud-arrow-up highlight-accent"></i> Upload Actual Location Photo</h4>
+            <form id="admin-location-photo-form" style="background: var(--bg-primary); padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: 24px;">
+              <div class="form-group">
+                <label class="form-label">Select Campus Location *</label>
+                <select id="admin-loc-select" class="form-control" required>
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Upload Image File (from device)</label>
+                <input type="file" id="admin-loc-photo-file" class="form-control" accept="image/*">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Or Image URL</label>
+                <input type="url" id="admin-loc-photo-url" class="form-control" placeholder="https://example.com/cmrcet-photo.jpg">
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-floppy-disk"></i> Save Photo for Location
+              </button>
+            </form>
+
+            <h4 style="margin-bottom: 14px;">Locations Photo Status & Actions</h4>
+            <div id="admin-locations-list">
+              <!-- Rendered dynamically with Remove Photo action returning to Picture Coming Soon -->
+            </div>
+          </div>
+
+          <!-- Pane 3: System / Database Sync -->
+          <div class="admin-tab-pane" id="admin-tab-system">
+            <h4 style="margin-bottom: 14px;">Database Status & Reset</h4>
+            <p style="font-size: 0.885rem; color: var(--text-secondary); margin-bottom: 20px;">
+              All admin changes (announcements, uploaded location photos, and rules) are persistently synced in browser <code>localStorage</code>.
+            </p>
+            <button class="btn btn-danger btn-sm" onclick="resetCollegeDataToDefault()">
+              <i class="fa-solid fa-arrows-rotate"></i> Reset to Default CMRCET Database
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       16. GLOBAL SEARCH MODAL
+       ========================================================================= -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop" role="dialog" aria-modal="true">
+    <div class="search-modal-box">
+      <div class="search-input-header">
+        <i class="fa-solid fa-magnifying-glass highlight-accent"></i>
+        <input 
+          type="text" 
+          class="search-main-input" 
+          id="search-main-input" 
+          placeholder="Search CMRCET locations, facilities, rules, procedures, notices..."
+          autocomplete="off"
+        >
+        <button class="chat-action-btn" id="search-modal-close" aria-label="Close search">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="search-results-list" id="search-results-list">
+        <div style="padding: 24px; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+          Type anything to search the CMRCET database...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       17. LOCATION DETAILS MODAL
+       ========================================================================= -->
+  <div class="location-modal-backdrop" id="location-modal-backdrop" role="dialog" aria-modal="true">
+    <div class="location-modal-box">
+      <button class="modal-close-btn" id="location-modal-close" aria-label="Close details">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="location-modal-body">
+        <!-- Injected dynamically with strict Picture Coming Soon placeholder -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       18. TOAST NOTIFICATIONS
+       ========================================================================= -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- External Leaflet Map Script -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Application Logic -->
+  <script src="college-data.js"></script>
+  <script src="chatbot.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

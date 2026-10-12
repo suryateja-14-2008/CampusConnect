@@ -1,0 +1,22 @@
+{
+  "name": "campus-connect-cmrcet",
+  "version": "2.0.0",
+  "description": "CMRCET College Information, Satellite Map Navigation & Gemini AI Assistant",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "cmrcet",
+    "campus-connect",
+    "gemini-ai",
+    "interactive-satellite-map",
+    "gps-navigation"
+  ],
+  "author": "CMRCET Campus Connect Team",
+  "license": "ISC",
+  "dependencies": {
+    "@google/genai": "^2.28.0"
+  }
+}
